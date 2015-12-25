@@ -12,6 +12,7 @@
     Logger = require('./utils/Logger'),
     mongoose = require('mongoose'),
     cookieParser = require('cookie-parser'),
+    csrf = require('csurf'),
     BarangRoute = require('./routes/BarangRoute'),
 
     app = express();
@@ -21,6 +22,13 @@
   app.set('view engine', 'ejs');
 
   app.use(cookieParser());
+  app.use(csrf({
+    cookie: true
+  }));
+  app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    return next();
+  });
   app.use(morgan('combined', {
     stream: Logger.stream
   }));
@@ -47,6 +55,17 @@
   if ('development' === app.get('env')) {
     app.use(errorhandler());
   }
+
+  app.use(function(err, req, res, next) {
+    if (err.code !== 'EBADCSRFTOKEN') return next(err);
+
+    // handle CSRF token errors here
+    res.status(403)
+    res.json({
+      success: false,
+      info: 'csrf token tidak tersedia bung'
+    });
+  });
 
   var server = http.createServer(app);
   server.listen(app.get('port'), function() {
