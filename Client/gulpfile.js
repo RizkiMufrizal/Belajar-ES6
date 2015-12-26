@@ -82,12 +82,22 @@ gulp.task('connect-dev', function() {
 
 gulp.task('reload-server', function() {
   connect.reload();
-  livereload.reload();
+});
+
+gulp.task('js', function() {
+  gulp.src('./src/**/*.js')
+    .pipe(livereload());
+});
+
+gulp.task('html', function() {
+  gulp.src('./src/**/*.html')
+    .pipe(livereload());
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./src/app.js', ['webpack-dev', 'reload-server']);
   livereload.listen();
+  gulp.watch('./src/**/*.js', ['webpack-dev', 'reload-server', 'js']);
+  gulp.watch('./src/**/*.html', ['webpack-dev', 'reload-server', 'html']);
 });
 
 gulp.task('server', gulpSequence('webpack-dev', 'connect-dev', 'watch'));
