@@ -6,16 +6,20 @@ var webpack = require('webpack');
 var minifyHTML = require('gulp-minify-html');
 var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
-var connect = require('gulp-connect');
-var proxy = require('http-proxy-middleware');
-var livereload = require('gulp-livereload');
+var WebpackDevServer = require("webpack-dev-server");
 
 //begin development
 
-gulp.task('webpack-dev', function(callback) {
-  webpack({
+gulp.task("webpack-dev", function(callback) {
+
+  var compiler = webpack({
     context: __dirname + '/src',
-    entry: './app.js',
+    entry: [
+      'webpack/hot/dev-server',
+      'webpack-dev-server/client?http://localhost:9000',
+      './app.js',
+      './index.html'
+    ],
     output: {
       path: __dirname + '/src',
       filename: 'bundle.js'
@@ -53,54 +57,30 @@ gulp.task('webpack-dev', function(callback) {
         compress: {
           warnings: false
         }
-      })
+      }),
+      new webpack.HotModuleReplacementPlugin()
     ]
-  }, function(err, stats) {
-    if (err)
-      throw new gutil.PluginError('webpack', err);
-    gutil.log('[webpack]', stats.toString({
-    }));
-    callback();
-  });
-});
 
-gulp.task('connect-dev', function() {
-  connect.server({
-    root: 'src',
-    port: 9000,
-    livereload: true,
-    middleware: function(connect, opt) {
-      return [
-        proxy('/api', {
-          target: 'http://localhost:3000',
-          changeOrigin: true
-        })
-      ];
+  });
+
+  new WebpackDevServer(compiler, {
+    hot: true,
+    contentBase: './src/',
+    proxy: {
+      "/api/*": "http://localhost:3000"
+    },
+    stats: {
+      colors: true
     }
+  }).listen(9000, "localhost", function(err) {
+    if (err)
+      throw new gutil.PluginError("webpack-dev-server", err);
+    gutil.log("[webpack-dev-server]", "http://localhost:9000");
+
   });
 });
 
-gulp.task('reload-server', function() {
-  connect.reload();
-});
-
-gulp.task('js', function() {
-  gulp.src('./src/**/*.js')
-    .pipe(livereload());
-});
-
-gulp.task('html', function() {
-  gulp.src('./src/**/*.html')
-    .pipe(livereload());
-});
-
-gulp.task('watch', function() {
-  livereload.listen();
-  gulp.watch('./src/**/*.js', ['webpack-dev', 'reload-server', 'js']);
-  gulp.watch('./src/**/*.html', ['webpack-dev', 'reload-server', 'html']);
-});
-
-gulp.task('server', gulpSequence('webpack-dev', 'connect-dev', 'watch'));
+gulp.task('server', ['webpack-dev']);
 
 //end development
 
