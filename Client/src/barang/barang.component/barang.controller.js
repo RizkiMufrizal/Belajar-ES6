@@ -1,4 +1,5 @@
 export default class BarangController {
+
   constructor(BarangService) {
     this._BarangService = BarangService;
 
