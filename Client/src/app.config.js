@@ -9,16 +9,8 @@ export default function routing($stateProvider, $locationProvider, $urlRouterPro
     .state('Home', {
       url: '/',
       views: {
-        'lazyLoadView': {
-          templateUrl: './templates/home.ejs'
-        }
-      }
-    })
-    .state('oke', {
-      url: '/oke',
-      views: {
-        'lazyLoadView': {
-          templateUrl: './templates/oke.ejs'
+        'lazyLoadView@': {
+          template: '<ng-home></ng-home>'
         }
       }
     });
