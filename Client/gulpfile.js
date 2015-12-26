@@ -17,7 +17,7 @@ gulp.task('webpack-dev', function(callback) {
     entry: './app.js',
     output: {
       path: __dirname + '/src',
-      filename: 'bundle.min.js'
+      filename: 'bundle.js'
     },
     module: {
       loaders: [
