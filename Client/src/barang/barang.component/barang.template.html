@@ -1,1 +1,29 @@
-{{barang._barangs}}
+<div id="demo">
+    <div class="table-responsive-vertical shadow-z-1">
+        <table id="table" class="table table-hover table-bordered table-mc-light-blue">
+            <thead>
+                <tr>
+                    <th>Nama Barang</th>
+                    <th>Harga Barang</th>
+                    <th>Tanggal Kadaluarsa</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="b in barang._barangs">
+                    <td>{{b.namaBarang}}</td>
+                    <td>{{b.hargaBarang}}</td>
+                    <td>{{b.tanggalKadaluarsa | date:'d MMMM y'}}</td>
+                    <td class="text-center">
+                        <md-button class="md-raised" aria-label="edit">
+                            Edit
+                        </md-button>
+                        <md-button class="md-raised md-warn" aria-label="delete">
+                            Hapus
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
