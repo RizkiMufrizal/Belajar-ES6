@@ -8,6 +8,7 @@ var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
 var connect = require('gulp-connect');
 var proxy = require('http-proxy-middleware');
+var livereload = require('gulp-livereload');
 
 //begin development
 
@@ -81,10 +82,12 @@ gulp.task('connect-dev', function() {
 
 gulp.task('reload-server', function() {
   connect.reload();
+  livereload.reload();
 });
 
 gulp.task('watch', function() {
   gulp.watch('./src/app.js', ['webpack-dev', 'reload-server']);
+  livereload.listen();
 });
 
 gulp.task('server', gulpSequence('webpack-dev', 'connect-dev', 'watch'));
