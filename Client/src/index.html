@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <base href="/"/>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Belajar ES6">
-        <meta name="author" content="Rizki Mufrizal">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <title>Belajar ES6</title>
-    </head>
-    <body>
 
-        <md-content layout="row" layout-align="center start" ui-view="lazyLoadView">
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Belajar ES6">
+    <meta name="author" content="Rizki Mufrizal">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Belajar ES6</title>
+</head>
 
-        </md-content>
+<body>
 
-        <script type="text/javascript" src="bundle.js"></script>
-    </body>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button aria-label="Home">
+                <a ui-sref="Home">
+                    Home
+                </a>
+            </md-button>
+            <h2>
+                <span>Belajar ES6</span>
+            </h2>
+            <md-button class="md-raised" aria-label="Learn More">
+                <a ui-sref="Barang">
+                    Data Barang
+                </a>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content layout="row" layout-align="center start" ui-view="lazyLoadView">
+
+    </md-content>
+
+    <script type="text/javascript" src="bundle.js"></script>
+</body>
+
 </html>
