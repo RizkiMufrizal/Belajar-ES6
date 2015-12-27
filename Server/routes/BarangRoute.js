@@ -11,8 +11,9 @@
 
   router.get('/barang', function(req, res) {
     var page = req.query.page;
+    var size = parseInt(req.query.size);
 
-    Barang.find().paginate(page, 5, function(err, barangs, pagination) {
+    Barang.find().paginate(page, size, function(err, barangs, pagination) {
       if (err) {
         Logger.error('ambil data error bung', err);
         return res.json({
@@ -20,7 +21,7 @@
           info: 'ambil data error bung'
         });
       }
-      Logger.debug('ambil data berhasil', barangs);
+      //Logger.debug('ambil data berhasil', barangs);
       res.json({
         docs: barangs,
         pagination: pagination
