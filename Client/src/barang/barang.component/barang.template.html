@@ -1,6 +1,11 @@
 <div id="demo">
     <div class="table-responsive-vertical shadow-z-1">
         <table id="table" class="table table-hover table-bordered table-mc-light-blue">
+            <tfoot>
+                <md-button ng-click="barang.addBarang()" class="md-raised md-primary" aria-label="Tambah">
+                    Tambah
+                </md-button>
+            </tfoot>
             <thead>
                 <tr>
                     <th>Nama Barang</th>
@@ -25,5 +30,14 @@
                 </tr>
             </tbody>
         </table>
+        <md-button ng-disabled="barang.hasNextPage()" ng-click="barang.previousPage()" class="md-raise md-mini" aria-label="<">
+            <
+        </md-button>
+        <md-button ng-disabled="true" class="md-primary" aria-label="total">
+            {{barang._paging.page}} dari {{barang._paging.totalPages}}
+        </md-button>
+        <md-button ng-disabled="barang.hasPreviousPage()" class="md-raise md-mini" ng-click="barang.nextPage()" aria-label=">">
+            >
+        </md-button>
     </div>
 </div>
