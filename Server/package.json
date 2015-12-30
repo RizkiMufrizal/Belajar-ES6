@@ -1,7 +1,7 @@
 {
   "name": "belajar-es6-server",
   "version": "1.0.0",
-  "description": "belajar coffee script dengan nodejs expressjs dan mongodb",
+  "description": "belajar nodejs, expressjs dan mongodb",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
