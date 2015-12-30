@@ -21,7 +21,7 @@
           info: 'ambil data error bung'
         });
       }
-      //Logger.debug('ambil data berhasil', barangs);
+      Logger.debug('ambil data berhasil', barangs);
       res.json({
         docs: barangs,
         pagination: pagination
