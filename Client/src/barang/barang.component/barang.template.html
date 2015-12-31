@@ -1,43 +1,34 @@
-<div id="demo">
-    <div class="table-responsive-vertical shadow-z-1">
-        <table id="table" class="table table-hover table-bordered table-mc-light-blue">
-            <tfoot>
-                <md-button ng-click="barang.addBarang()" class="md-raised md-primary" aria-label="Tambah">
-                    Tambah
+<table style="margin: 20px auto;" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th style="text-align: center">Nama Barang</th>
+            <th style="text-align: center">Harga Barang</th>
+            <th style="text-align: center">Tanggal Kadaluarsa</th>
+            <th style="text-align: center">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="b in barang._barangs">
+            <td style="text-align: left">{{b.namaBarang}}</td>
+            <td>{{b.hargaBarang}}</td>
+            <td>{{b.tanggalKadaluarsa | date:'d MMMM y'}}</td>
+            <td class="text-center">
+                <md-button ng-click="barang.editBarang(b)" class="md-raised" aria-label="edit">
+                    Edit
                 </md-button>
-            </tfoot>
-            <thead>
-                <tr>
-                    <th>Nama Barang</th>
-                    <th>Harga Barang</th>
-                    <th>Tanggal Kadaluarsa</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="b in barang._barangs">
-                    <td>{{b.namaBarang}}</td>
-                    <td>{{b.hargaBarang}}</td>
-                    <td>{{b.tanggalKadaluarsa | date:'d MMMM y'}}</td>
-                    <td class="text-center">
-                        <md-button ng-click="barang.editBarang(b)" class="md-raised" aria-label="edit">
-                            Edit
-                        </md-button>
-                        <md-button ng-click="barang.deleteBarang(b.idBarang)" class="md-raised md-warn" aria-label="delete">
-                            Hapus
-                        </md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <md-button ng-disabled="barang.hasNextPage()" ng-click="barang.previousPage()" class="md-raise md-mini" aria-label="<">
-            <
-        </md-button>
-        <md-button ng-disabled="true" class="md-primary" aria-label="total">
-            {{barang._paging.page}} dari {{barang._paging.totalPages}}
-        </md-button>
-        <md-button ng-disabled="barang.hasPreviousPage()" class="md-raise md-mini" ng-click="barang.nextPage()" aria-label=">">
-            >
-        </md-button>
-    </div>
-</div>
+                <md-button ng-click="barang.deleteBarang(b.idBarang)" class="md-raised md-warn" aria-label="delete">
+                    Hapus
+                </md-button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<md-button ng-disabled="barang.hasNextPage()" ng-click="barang.previousPage()" class="md-raise md-mini" aria-label="<">
+    <
+</md-button>
+<md-button ng-disabled="true" class="md-primary" aria-label="total">
+    {{barang._paging.page}} dari {{barang._paging.totalPages}}
+</md-button>
+<md-button ng-disabled="barang.hasPreviousPage()" class="md-raise md-mini" ng-click="barang.nextPage()" aria-label=">">
+    >
+</md-button>
