@@ -1,4 +1,5 @@
 import barangDialog from './barang.dialog.html';
+import barangDialogJS from './barang.dialog';
 
 export default class BarangController {
 
@@ -53,26 +54,22 @@ export default class BarangController {
   }
   //end paging
 
-  clear() {
-    this._inputBarang.idBarang = '';
-    this._inputBarang.namaBarang = '';
-    this._inputBarang.hargaBarang = '';
-    this._inputBarang.tanggalKadaluarsa = '';
-  }
-
   addBarang() {
-    this.clear();
     this._mdDialog.show({
-      template: '<ng-barang-dialog></ng-barang-dialog>',
-      clickOutsideToClose: true
+      templateUrl: '../../barang/barang.component/barang.dialog.html',
+      controller: barangDialogJS,
+      controllerAs: 'barang',
+      clickOutsideToClose: false,
+      locals: {
+        _inputBarang: null,
+        _enable: false
+      }
     })
-      .then(function(answer) {});
-  }
-
-  saveBarang(b) {
-    this._BarangService.saveBarang(b).success((data) => {
-      alert(data.info);
-    });
+      .then((answer) => {
+        this.getBarang();
+      }, () => {
+        console.log('cancel');
+      });
   }
 
 }
