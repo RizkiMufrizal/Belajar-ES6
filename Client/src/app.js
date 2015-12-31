@@ -7,6 +7,7 @@ import angularAnimate from 'angular-animate';
 import angularAria from 'angular-aria';
 import angularMessages from 'angular-messages';
 import angularMaterial from 'angular-material';
+import angularMaterialIcon from 'angular-material-icons';
 import angularLazyLoad from 'oclazyload';
 
 import appModule from './app.module';
@@ -19,6 +20,7 @@ angular.element(document).ready(function() {
       angularAria,
       angularMessages,
       angularMaterial,
+      angularMaterialIcon,
       angularUiRouter,
       angularLazyLoad,
       appModule
