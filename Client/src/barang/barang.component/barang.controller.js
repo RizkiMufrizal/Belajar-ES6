@@ -91,6 +91,13 @@ export default class BarangController {
       });
   }
 
+  deleteBarang(idBarang) {
+    this._BarangService.deleteBarang(idBarang).success(() => {
+      alert(data.info);
+      this.getBarang();
+    });
+  }
+
 }
 
 BarangController.$inject = ['BarangService', '$mdDialog'];
