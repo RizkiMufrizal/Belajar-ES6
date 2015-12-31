@@ -20,7 +20,7 @@
                     <td>{{b.hargaBarang}}</td>
                     <td>{{b.tanggalKadaluarsa | date:'d MMMM y'}}</td>
                     <td class="text-center">
-                        <md-button class="md-raised" aria-label="edit">
+                        <md-button ng-click="barang.editBarang(b)" class="md-raised" aria-label="edit">
                             Edit
                         </md-button>
                         <md-button class="md-raised md-warn" aria-label="delete">
