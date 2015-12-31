@@ -9,13 +9,6 @@ export default function BarangDialog($mdDialog, BarangService, _inputBarang, _en
     $mdDialog.cancel();
   };
 
-  barang.clear = () => {
-    barang._inputBarang.idBarang = '';
-    barang._inputBarang.namaBarang = '';
-    barang._inputBarang.hargaBarang = '';
-    barang._inputBarang.tanggalKadaluarsa = '';
-  };
-
   barang.saveBarang = (b) => {
     BarangService.saveBarang(b).success((data) => {
       alert(data.info);
