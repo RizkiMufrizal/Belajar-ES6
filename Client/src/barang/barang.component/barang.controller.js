@@ -3,9 +3,10 @@ import barangDialogJS from './barang.dialog';
 
 export default class BarangController {
 
-  constructor(BarangService, $mdDialog) {
+  constructor(BarangService, $mdDialog, sweet) {
     this._BarangService = BarangService;
     this._mdDialog = $mdDialog;
+    this._sweet = sweet;
 
     this._paging = {
       page: 1
@@ -92,12 +93,22 @@ export default class BarangController {
   }
 
   deleteBarang(idBarang) {
-    this._BarangService.deleteBarang(idBarang).success((data) => {
-      alert(data.info);
-      this.getBarang();
+    this._sweet.show({
+      title: 'Warning',
+      text: 'Apakah Data ingin dihapus ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Ya, Dihapus !',
+      closeOnConfirm: false
+    }, function() {
+      this._BarangService.deleteBarang(idBarang).success((data) => {
+        this._sweet.show('Terhapus !', data.info, 'success');
+        this.getBarang();
+      });
     });
   }
 
 }
 
-BarangController.$inject = ['BarangService', '$mdDialog'];
+BarangController.$inject = ['BarangService', '$mdDialog', 'sweet'];
