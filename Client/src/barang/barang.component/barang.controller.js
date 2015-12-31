@@ -72,6 +72,25 @@ export default class BarangController {
       });
   }
 
+  editBarang(b) {
+    b.tanggalKadaluarsa = new Date(b.tanggalKadaluarsa);
+    this._mdDialog.show({
+      templateUrl: '../../barang/barang.component/barang.dialog.html',
+      controller: barangDialogJS,
+      controllerAs: 'barang',
+      clickOutsideToClose: false,
+      locals: {
+        _inputBarang: b,
+        _enable: true
+      }
+    })
+      .then((answer) => {
+        this.getBarang();
+      }, () => {
+        console.log('cancel');
+      });
+  }
+
 }
 
 BarangController.$inject = ['BarangService', '$mdDialog'];
