@@ -1,8 +1,9 @@
 import 'angular-material/angular-material.min.css';
 import 'sweetalert/dist/sweetalert.css';
-import './app.css';
+import './material/material.min.css';
 
 import 'sweetalert';
+import './material/material.min.js';
 
 import angular from 'angular';
 import angularUiRouter from 'angular-ui-router';
