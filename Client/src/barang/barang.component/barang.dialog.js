@@ -23,6 +23,13 @@ export default function BarangDialog($mdDialog, BarangService, _inputBarang, _en
     });
   };
 
+  barang.updateBarang = (b, idBarang) => {
+    BarangService.updateBarang(b, idBarang).success((data) => {
+      alert(data.info);
+      $mdDialog.hide();
+    });
+  }
+
 }
 
 BarangDialog.$inject = ['$mdDialog', 'BarangService', '_inputBarang', '_enable'];
