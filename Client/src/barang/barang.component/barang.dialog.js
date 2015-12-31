@@ -1,4 +1,4 @@
-export default function BarangDialog($mdDialog, BarangService, _inputBarang, _enable) {
+export default function BarangDialog($mdDialog, BarangService, _inputBarang, _enable, sweet) {
 
   let barang = this;
 
@@ -11,18 +11,18 @@ export default function BarangDialog($mdDialog, BarangService, _inputBarang, _en
 
   barang.saveBarang = (b) => {
     BarangService.saveBarang(b).success((data) => {
-      alert(data.info);
+      sweet.show('Info', data.info, 'success');
       $mdDialog.hide();
     });
   };
 
   barang.updateBarang = (b, idBarang) => {
     BarangService.updateBarang(b, idBarang).success((data) => {
-      alert(data.info);
+      sweet.show('Info', data.info, 'success');
       $mdDialog.hide();
     });
   }
 
 }
 
-BarangDialog.$inject = ['$mdDialog', 'BarangService', '_inputBarang', '_enable'];
+BarangDialog.$inject = ['$mdDialog', 'BarangService', '_inputBarang', '_enable', 'sweet'];
