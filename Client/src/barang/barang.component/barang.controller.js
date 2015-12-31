@@ -92,7 +92,7 @@ export default class BarangController {
   }
 
   deleteBarang(idBarang) {
-    this._BarangService.deleteBarang(idBarang).success(() => {
+    this._BarangService.deleteBarang(idBarang).success((data) => {
       alert(data.info);
       this.getBarang();
     });
