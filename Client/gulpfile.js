@@ -66,9 +66,15 @@ gulp.task("webpack-dev", function(callback) {
   new WebpackDevServer(compiler, {
     hot: true,
     contentBase: './src/',
-    proxy: {
-      "/api/*": "http://localhost:3000"
-    },
+    proxy: [
+      {
+        path: '/api/*',
+        target: 'http://localhost:3000'
+      }, {
+        path: '/authenticate',
+        target: 'http://localhost:3000'
+      }
+    ],
     stats: {
       colors: true
     }
