@@ -5,7 +5,7 @@ export default class BarangController {
 
   constructor(BarangService, $mdDialog, sweet) {
     this._BarangService = BarangService;
-    this._mdDialog = $mdDialog;
+    this._$mdDialog = $mdDialog;
     this._sweet = sweet;
 
     this._paging = {
@@ -56,7 +56,7 @@ export default class BarangController {
   //end paging
 
   addBarang() {
-    this._mdDialog.show({
+    this._$mdDialog.show({
       templateUrl: '../../barang/barang.component/barang.dialog.html',
       controller: barangDialogJS,
       controllerAs: 'barang',
@@ -75,7 +75,7 @@ export default class BarangController {
 
   editBarang(b) {
     b.tanggalKadaluarsa = new Date(b.tanggalKadaluarsa);
-    this._mdDialog.show({
+    this._$mdDialog.show({
       templateUrl: '../../barang/barang.component/barang.dialog.html',
       controller: barangDialogJS,
       controllerAs: 'barang',
