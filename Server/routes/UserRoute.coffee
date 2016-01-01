@@ -43,7 +43,7 @@ passport.use new LocalStrategy((username, password, done) ->
             done null, user
 )
 
-router.post '/SignUp', (req, res, next) ->
+router.post '/register', (req, res, next) ->
 
     bcrypt.genSalt 10, (err, salt) ->
         bcrypt.hash req.body.password, salt, (err, hash) ->
