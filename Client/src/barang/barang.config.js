@@ -7,7 +7,8 @@ export default function routing($stateProvider) {
         'lazyLoadView@': {
           template: '<ng-barang></ng-barang>'
         }
-      }
+      },
+      authenticate: true
     });
 
 }
