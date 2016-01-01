@@ -9,7 +9,8 @@ export default function routing($stateProvider, $locationProvider, $urlRouterPro
         'lazyLoadView@': {
           template: '<ng-home></ng-home>'
         }
-      }
+      },
+      authenticate: false
     });
 
 }
