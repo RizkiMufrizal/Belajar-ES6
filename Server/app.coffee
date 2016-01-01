@@ -13,6 +13,7 @@ csrf = require 'csurf'
 expressJwt = require 'express-jwt'
 Logger = require './utils/Logger'
 BarangRoute = require './routes/BarangRoute'
+UserRoute = require './routes/UserRoute'
 
 app = express()
 
@@ -44,7 +45,10 @@ app.use bodyParser.urlencoded
 
 app.use '/api', expressJwt
     secret: 'rizki'
+
 app.use '/api', BarangRoute
+app.use '/', UserRoute
+
 app.use (err, req, res, next) ->
     if err.name == 'UnauthorizedError'
         res.status(401).send 'Unauthorized'
