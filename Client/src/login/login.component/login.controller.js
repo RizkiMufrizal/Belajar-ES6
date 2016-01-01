@@ -1,9 +1,10 @@
 export default class LoginController {
 
-  constructor(LoginService, sweet, $state) {
+  constructor(LoginService, sweet, $state, $mdDialog) {
     this._LoginService = LoginService;
     this._sweet = sweet;
     this._$state = $state;
+    this._$mdDialog = $mdDialog;
   }
 
   authenticate(u) {
@@ -15,6 +16,18 @@ export default class LoginController {
     });
   }
 
+  register() {
+    this._$mdDialog.show({
+      template: '<ng-user></ng-user>',
+      clickOutsideToClose: false,
+    })
+      .then((answer) => {
+
+      }, () => {
+        console.log('cancel');
+      });
+  }
+
 }
 
-LoginController.$inject = ['LoginService', 'sweet', '$state'];
+LoginController.$inject = ['LoginService', 'sweet', '$state', '$mdDialog'];
