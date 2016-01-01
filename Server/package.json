@@ -9,6 +9,7 @@
   "author": "Rizki Mufrizal (mufrizalrizki@gmail.com)",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.0",
     "csurf": "^1.8.3",
@@ -16,13 +17,18 @@
     "ejs": "^2.3.4",
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
+    "express-jwt": "^3.3.0",
     "express-session": "^1.12.1",
+    "jsonwebtoken": "^5.5.0",
     "kerberos": "0.0.17",
     "method-override": "^2.3.5",
     "mongoose": "^4.3.4",
     "mongoose-simple-paging": "0.0.5",
     "morgan": "^1.6.1",
     "node-uuid": "^1.4.7",
+    "nodemailer": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "^2.3.0",
     "winston": "^2.1.1"
   }
