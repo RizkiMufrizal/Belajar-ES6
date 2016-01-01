@@ -4,12 +4,12 @@ path = require 'path'
 morgan = require 'morgan'
 methodOverride = require 'method-override'
 expressSession = require 'express-session'
+passport = require 'passport'
 bodyParser = require 'body-parser'
 errorhandler = require 'errorhandler'
 mongoose = require 'mongoose'
 cookieParser = require 'cookie-parser'
 csrf = require 'csurf'
-jwt = require 'jsonwebtoken'
 expressJwt = require 'express-jwt'
 Logger = require './utils/Logger'
 BarangRoute = require './routes/BarangRoute'
@@ -29,6 +29,8 @@ app.use (req, res, next) ->
     next()
 
 app.use morgan('combined', stream: Logger.stream)
+app.use passport.initialize()
+app.use passport.session()
 
 app.use methodOverride()
 app.use expressSession
@@ -40,7 +42,12 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded
     extended: true
 
+app.use '/api', expressJwt
+    secret: 'rizki'
 app.use '/api', BarangRoute
+app.use (err, req, res, next) ->
+    if err.name == 'UnauthorizedError'
+        res.status(401).send 'Unauthorized'
 
 mongoose.connect 'mongodb://localhost/BelajarES6', (err) ->
     if err
