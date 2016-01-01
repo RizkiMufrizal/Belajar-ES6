@@ -6,11 +6,11 @@ var webpack = require('webpack');
 var minifyHTML = require('gulp-minify-html');
 var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
-var WebpackDevServer = require("webpack-dev-server");
+var WebpackDevServer = require('webpack-dev-server');
 
 //begin development
 
-gulp.task("webpack-dev", function(callback) {
+gulp.task('webpack-dev', function(callback) {
 
   var compiler = webpack({
     context: __dirname + '/src',
@@ -81,10 +81,10 @@ gulp.task("webpack-dev", function(callback) {
     stats: {
       colors: true
     }
-  }).listen(9000, "localhost", function(err) {
+  }).listen(9000, 'localhost', function(err) {
     if (err)
-      throw new gutil.PluginError("webpack-dev-server", err);
-    gutil.log("[webpack-dev-server]", "http://localhost:9000");
+      throw new gutil.PluginError('webpack-dev-server', err);
+    gutil.log('[webpack-dev-server]', 'http://localhost:9000');
 
   });
 });
