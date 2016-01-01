@@ -1,1 +1,29 @@
-login
+<form name="loginForm" layout="column" style="width: 300px">
+    <div layout-align="start center" layout="column">
+        <h4 class="md-display-2">Login</h4>
+    </div>
+    <md-input-container>
+        <label>Email</label>
+        <input required type="email" name="email" ng-model="login._inputLogin.email" ng-pattern="/^.+@.+\..+$/" />
+        <div ng-messages="loginForm.email.$error" role="alert">
+            <div ng-message="required">
+                Email Wajib Diisi
+            </div>
+            <div ng-message="pattern">
+                Format Email tidak sesuai
+            </div>
+        </div>
+    </md-input-container>
+    <md-input-container>
+        <label>Password</label>
+        <input required type="password" name="password" ng-model="login._inputLogin.password" />
+        <div ng-messages="loginForm.password.$error" role="alert">
+            <div ng-message="required">
+                Password Wajib Diisi
+            </div>
+        </div>
+    </md-input-container>
+    <md-button ng-click="login.authenticate(login._inputLogin)" class="md-raised md-primary">
+        Login
+    </md-button>
+</form>
