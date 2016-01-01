@@ -10,7 +10,7 @@ export default function routing($stateProvider, $locationProvider, $urlRouterPro
           template: '<ng-home></ng-home>'
         }
       },
-      authenticate: false
+      authenticate: true
     });
 
 }
