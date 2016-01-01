@@ -73,6 +73,9 @@ gulp.task("webpack-dev", function(callback) {
       }, {
         path: '/authenticate',
         target: 'http://localhost:3000'
+      }, {
+        path: '/register',
+        target: 'http://localhost:3000'
       }
     ],
     stats: {
