@@ -101,7 +101,7 @@ export default class BarangController {
       confirmButtonColor: '#DD6B55',
       confirmButtonText: 'Ya, Dihapus !',
       closeOnConfirm: false
-    }, function() {
+    }, () => {
       this._BarangService.deleteBarang(idBarang).success((data) => {
         this._sweet.show('Terhapus !', data.info, 'success');
         this.getBarang();
