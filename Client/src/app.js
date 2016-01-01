@@ -14,6 +14,7 @@ import angularMaterial from 'angular-material';
 import angularMaterialIcon from 'angular-material-icons';
 import angularLazyLoad from 'oclazyload';
 import angularSweetAlert from 'angular-h-sweetalert';
+import angularCookie from 'angular-cookies';
 
 import appModule from './app.module';
 
@@ -29,6 +30,7 @@ angular.element(document).ready(function() {
       angularUiRouter,
       angularLazyLoad,
       angularSweetAlert,
+      angularCookie,
       appModule
     ]);
   angular.bootstrap(document.getElementsByTagName("body")[0], [appName]);
