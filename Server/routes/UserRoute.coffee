@@ -45,9 +45,12 @@ passport.use new LocalStrategy((username, password, done) ->
 
 router.post '/register', (req, res, next) ->
 
+    idUser = uuid.v4()
+
     bcrypt.genSalt 10, (err, salt) ->
         bcrypt.hash req.body.password, salt, (err, hash) ->
             user = new User(
+                idUser: idUser
                 email: req.body.email
                 nama: req.body.nama
                 password: hash
@@ -60,7 +63,7 @@ router.post '/register', (req, res, next) ->
                     from: 'perpustakaanonline2015@gmail.com'
                     to: req.body.email
                     subject: 'Verifikasi Email'
-                    html: 'Silahkan verifikasi melalui alamat berikut : <a href="http://localhost:3000/api/user/Verifikasi/' + req.body.email + '">Aplikasi Post Status</a>'
+                    html: "Silahkan verifikasi melalui alamat berikut : <a href='http://localhost:3000/verifikasi/#{idUser}'>Aplikasi Post Status</a>"
                 )
 
                 res.json
