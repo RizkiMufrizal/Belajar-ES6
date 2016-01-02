@@ -1,0 +1,56 @@
+<md-dialog style="max-width: 800px; width: 700px">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Register</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="user.cancel()" aria-label="close">
+                <ng-md-icon icon="close"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-content layout-padding>
+            <form name="userForm" layout="column">
+                <md-input-container>
+                    <label>Email</label>
+                    <input required type="email" name="email" ng-model="user._inputUser.email" ng-pattern="/^.+@.+\..+$/" />
+                    <div ng-messages="userForm.email.$error" role="alert">
+                        <div ng-message="required">
+                            Email Wajib Diisi
+                        </div>
+                        <div ng-message="pattern">
+                            Format Email tidak sesuai
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Nama</label>
+                    <input required type="text" name="nama" ng-model="user._inputUser.nama" />
+                    <div ng-messages="userForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            Nama Wajib Diisi
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input required type="password" name="password" ng-model="user._inputUser.password" />
+                    <div ng-messages="userForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            Password Wajib Diisi
+                        </div>
+                    </div>
+                </md-input-container>
+            </form>
+        </md-content layout-padding>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="user.cancel()" class="md-raised md-warn">
+            Batal
+        </md-button>
+        <md-button ng-click="user.register(user._inputUser)" class="md-raised md-primary">
+            Register
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
