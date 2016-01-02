@@ -13,7 +13,7 @@ export default class UserController {
   register(r) {
     this._UserService.register(r).success((data) => {
       this._sweet.show('Info', data.info, 'success');
-      this._$$mdDialog.hide();
+      this._$mdDialog.hide();
     });
   }
 
