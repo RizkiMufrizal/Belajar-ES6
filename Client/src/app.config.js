@@ -1,4 +1,6 @@
-export default function routing($stateProvider, $locationProvider, $urlRouterProvider) {
+import HttpAuth from './app.http.auth';
+
+export default function routing($stateProvider, $locationProvider, $urlRouterProvider, $provide, $httpProvider) {
 
   $urlRouterProvider.otherwise('/');
 
@@ -13,6 +15,9 @@ export default function routing($stateProvider, $locationProvider, $urlRouterPro
       authenticate: true
     });
 
+  $provide.factory('authorizeInterceptor', HttpAuth);
+  $httpProvider.interceptors.push('authorizeInterceptor');
+
 }
 
-routing.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
+routing.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$provide', '$httpProvider'];
