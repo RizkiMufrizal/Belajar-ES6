@@ -4,8 +4,8 @@ export default class BarangService {
     this._$http = $http;
   }
 
-  getBarang(page) {
-    return this._$http.get('/api/barang?page=' + page);
+  getBarang(page, size) {
+    return this._$http.get('/api/barang?page=' + page + '&size=' + size);
   }
 
   saveBarang(barang) {
