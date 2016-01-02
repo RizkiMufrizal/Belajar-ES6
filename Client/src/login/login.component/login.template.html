@@ -4,7 +4,7 @@
     </div>
     <md-input-container>
         <label>Email</label>
-        <input required type="email" name="email" ng-model="login._inputLogin.email" ng-pattern="/^.+@.+\..+$/" />
+        <input required type="email" name="email" ng-model="login._inputLogin.username" ng-pattern="/^.+@.+\..+$/" />
         <div ng-messages="loginForm.email.$error" role="alert">
             <div ng-message="required">
                 Email Wajib Diisi
@@ -23,7 +23,12 @@
             </div>
         </div>
     </md-input-container>
-    <md-button ng-click="login.authenticate(login._inputLogin)" class="md-raised md-primary">
-        Login
-    </md-button>
+    <div layout="row">
+        <md-button ng-click="login.authenticate(login._inputLogin)" class="md-raised md-primary">
+            Login
+        </md-button>
+        <md-button ng-click="login.register()" class="md-raised">
+            Register
+        </md-button>
+    </div>
 </form>
