@@ -1,7 +1,7 @@
 express = require 'express'
 jwt = require 'jsonwebtoken'
 uuid = require 'node-uuid'
-Barang = require '../models/User'
+User = require '../models/User'
 Logger = require '../utils/Logger'
 nodemailer = require 'nodemailer'
 bcrypt = require 'bcrypt'
@@ -13,7 +13,7 @@ transporter = nodemailer.createTransport(
     service: 'gmail'
     auth:
         user: 'perpustakaanonline2015@gmail.com'
-        pass: 'penelitianilmiah'
+        pass: 'penelitianilmiah123'
 )
 
 passport.serializeUser (user, done) ->
@@ -54,6 +54,7 @@ router.post '/register', (req, res, next) ->
                 email: req.body.email
                 nama: req.body.nama
                 password: hash
+                enable: false
             )
 
             user.save (err) ->
@@ -63,12 +64,12 @@ router.post '/register', (req, res, next) ->
                     from: 'perpustakaanonline2015@gmail.com'
                     to: req.body.email
                     subject: 'Verifikasi Email'
-                    html: "Silahkan verifikasi melalui alamat berikut : <a href='http://localhost:3000/verifikasi/#{idUser}'>Aplikasi Post Status</a>"
+                    html: "Silahkan verifikasi melalui alamat berikut : <a href='http://localhost:3000/verifikasi/#{idUser}'>Belajar ES6</a>"
                 )
 
                 res.json
                     success: true
-                    message: 'Anda Berhasil SignUp'
+                    info: 'Anda Berhasil register, silahkan verifikasi email anda'
 
 router.post '/authenticate', (req, res) ->
     passport.authenticate('local', (err, user, info) ->
@@ -84,10 +85,11 @@ router.post '/authenticate', (req, res) ->
                 email: user.email
                 nama: user.nama
 
-            token = jwt.sign profile, 'rizki', expiresInMinutes: 60 * 5
+            #token untuk sehari
+            token = jwt.sign profile, 'rizki', expiresInMinutes: 60 * 24
 
             res.json
-                message: 'berhasil login'
+                info: 'berhasil login'
                 token: token
                 email: user.email
                 nama: user.nama
