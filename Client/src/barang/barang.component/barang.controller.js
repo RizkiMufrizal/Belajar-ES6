@@ -9,8 +9,19 @@ export default class BarangController {
     this._sweet = sweet;
 
     this._paging = {
-      page: 1
+      page: 1,
+      size: 5
     };
+
+    this._perPage = [
+      {
+        pager: 5
+      }, {
+        pager: 10
+      }, {
+        pager: 15
+      }
+    ];
 
     this._inputBarang = {};
 
@@ -19,17 +30,23 @@ export default class BarangController {
   }
 
   getBarang() {
-    this._BarangService.getBarang(this._paging.page).success((data) => {
+    this._BarangService.getBarang(this._paging.page, this._paging.size).success((data) => {
       this._barangs = data.docs;
       this._paging.totalPages = data.pagination.totalPages;
     });
   }
 
   //paging
+
+  selectPageSize(s) {
+    this._paging.size = s;
+    this.getBarang();
+  }
+
   nextPage() {
     if (this._paging.page < this._paging.totalPages) {
       this._paging.page++;
-      getBarang();
+      this.getBarang();
     }
   }
 
@@ -43,7 +60,7 @@ export default class BarangController {
   previousPage() {
     if (this._paging.page > 1) {
       this._paging.page--;
-      getBarang();
+      this.getBarang();
     }
   }
 
