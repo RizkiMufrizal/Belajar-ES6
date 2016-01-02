@@ -96,4 +96,7 @@ router.post '/authenticate', (req, res) ->
                 success: true
     ) req, res
 
+router.get '/', (req, res) ->
+    res.render 'index'
+
 module.exports = router
