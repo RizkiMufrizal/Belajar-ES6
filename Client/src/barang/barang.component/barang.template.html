@@ -27,12 +27,20 @@
         </tr>
     </tbody>
 </table>
-<md-button ng-disabled="barang.hasNextPage()" ng-click="barang.previousPage()" class="md-raise md-mini" aria-label="<">
-    <
+<md-button ng-disabled="barang.hasPreviousPage()" ng-click="barang.previousPage()" class="md-raise md-mini" aria-label="<">
+    <ng-md-icon icon="keyboard_arrow_left"></ng-md-icon>
 </md-button>
 <md-button ng-disabled="true" class="md-primary" aria-label="total">
     {{barang._paging.page}} dari {{barang._paging.totalPages}}
 </md-button>
-<md-button ng-disabled="barang.hasPreviousPage()" class="md-raise md-mini" ng-click="barang.nextPage()" aria-label=">">
-    >
+<md-button ng-disabled="barang.hasNextPage()" class="md-raise md-mini" ng-click="barang.nextPage()" aria-label=">">
+    <ng-md-icon icon="keyboard_arrow_right"></ng-md-icon>
 </md-button>
+<md-input-container>
+    <label>Pilih</label>
+    <md-select ng-model="barang._pager" ng-change="barang.selectPageSize(barang._pager)">
+        <md-option ng-repeat="p in barang._perPage" value="{{p.pager}}">
+            {{p.pager}}
+        </md-option>
+    </md-select>
+</md-input-container>
