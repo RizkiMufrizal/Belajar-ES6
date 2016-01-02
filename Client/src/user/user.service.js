@@ -5,7 +5,7 @@ export default class UserService {
   }
 
   register(r) {
-    return $http.post('/register', r);
+    return this._$http.post('/register', r);
   }
 
 }
