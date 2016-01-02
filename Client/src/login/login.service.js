@@ -17,6 +17,10 @@ export default class LoginService {
     }
   }
 
+  logout() {
+    return this._$http.post('/logout');
+  }
+
 }
 
 LoginService.$inject = ['$http', '$cookies'];
