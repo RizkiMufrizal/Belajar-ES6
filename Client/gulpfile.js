@@ -4,9 +4,9 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var minifyHTML = require('gulp-minify-html');
-var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
 var WebpackDevServer = require('webpack-dev-server');
+var gulpRename = require('gulp-rename');
 
 //begin development
 
@@ -22,7 +22,7 @@ gulp.task('webpack-dev', function(callback) {
     ],
     output: {
       path: __dirname + '/src',
-      filename: 'bundle.js'
+      filename: 'bundle.min.js'
     },
     module: {
       loaders: [
@@ -100,22 +100,16 @@ gulp.task('minify-html', function() {
     .pipe(minifyHTML({
       empty: true
     }))
-    .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('clean', function() {
-  return gulp.src('dist', {
-    read: false
-  })
-    .pipe(clean());
+    .pipe(gulpRename('index.ejs'))
+    .pipe(gulp.dest('../Server/views/'));
 });
 
 gulp.task('webpack-pro', function(callback) {
   webpack({
-    context: __dirname + '/app',
+    context: __dirname + '/src',
     entry: './app.js',
     output: {
-      path: __dirname + '/dist',
+      path: '../Server/public/',
       filename: 'bundle.min.js',
       chunkFilename: '[id].bundle.js'
     },
@@ -170,6 +164,6 @@ gulp.task('server-build', function() {
   });
 });
 
-gulp.task('build', gulpSequence('clean', 'webpack', 'minify-html'));
+gulp.task('build', gulpSequence('webpack-pro', 'minify-html'));
 
 //end production
