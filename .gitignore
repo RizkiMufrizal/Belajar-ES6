@@ -3,3 +3,4 @@ logs/
 bundle.min.js
 dist/
 bundle.js
+.vagrant/
