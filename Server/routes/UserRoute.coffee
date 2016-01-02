@@ -96,6 +96,23 @@ router.post '/authenticate', (req, res) ->
                 success: true
     ) req, res
 
+router.post '/logout', (req, res) ->
+  req.logout()
+  res.json
+      info: 'berhasil logout'
+      success: true
+
+router.get '/verifikasi/:idUser', (req, res) ->
+    idUser = req.params.idUser
+
+    User.findOne {
+        idUser: idUser
+    }, (err, user) ->
+
+        user.enable = true
+        user.save()
+        res.redirect '/'
+
 router.get '/', (req, res) ->
     res.render 'index'
 
