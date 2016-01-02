@@ -10,10 +10,11 @@ export default class LoginService {
   }
 
   isAuthenticate() {
-    if (this._$cookies.get('username') === null) {
+    if (this._$cookies.get('username')) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
 }
