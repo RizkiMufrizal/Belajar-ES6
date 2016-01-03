@@ -13,5 +13,5 @@ Vagrant.configure(2) do |config|
 
   #konfigurasi network
   #port forwarding
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 3000
 end

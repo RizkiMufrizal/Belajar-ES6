@@ -25,6 +25,10 @@ apt-get install -y git
 echo "instalasi nginx"
 apt-get install -y nginx
 
+echo "Konfigurasi reverse proxy nginx"
+cp /vagrant/config/nginx-proxy /etc/nginx/sites-available/belajares6
+service nginx restart
+
 echo "instalasi mongodb"
 apt-get install -y mongodb-org
 
