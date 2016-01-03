@@ -7,6 +7,8 @@ var minifyHTML = require('gulp-minify-html');
 var gulpSequence = require('gulp-sequence');
 var WebpackDevServer = require('webpack-dev-server');
 var gulpRename = require('gulp-rename');
+var gulpInject = require('gulp-inject');
+var gulpRemoveHtml = require('gulp-remove-html');
 
 //begin development
 
@@ -22,7 +24,7 @@ gulp.task('webpack-dev', function(callback) {
     ],
     output: {
       path: __dirname + '/src',
-      filename: 'bundle.min.js'
+      filename: 'bundle.js'
     },
     module: {
       loaders: [
@@ -99,7 +101,17 @@ gulp.task('server', ['webpack-dev']);
 //begin production
 
 gulp.task('minify-html', function() {
-  gulp.src('src/*.html')
+  var target = gulp.src('./src/index.html');
+
+  var sources = gulp.src(['../Server/public/*.js'], {
+    read: false
+  });
+
+  target
+    .pipe(gulpRemoveHtml())
+    .pipe(gulpInject(sources, {
+      ignorePath: '../Server/public/'
+    }))
     .pipe(minifyHTML({
       empty: true
     }))
