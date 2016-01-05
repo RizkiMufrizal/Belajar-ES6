@@ -27,6 +27,8 @@ apt-get install -y nginx
 
 echo "Konfigurasi reverse proxy nginx"
 cp /vagrant/config/nginx-proxy /etc/nginx/sites-available/belajares6
+ln -s /etc/nginx/sites-available/belajares6 /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
 service nginx restart
 
 echo "instalasi mongodb"
