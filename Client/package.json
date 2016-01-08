@@ -43,6 +43,7 @@
     "angular-material-icons": "^0.6.0",
     "angular-messages": "^1.4.8",
     "angular-ui-router": "^0.2.15",
+    "material-design-lite": "^1.0.6",
     "oclazyload": "^1.0.9",
     "sweetalert": "^1.1.3"
   }
